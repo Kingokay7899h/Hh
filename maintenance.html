@@ -1,0 +1,133 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAMS - Maintenance</title>
+    <link rel="stylesheet" href="maintenance.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>DAMS</h2>
+        <ul>
+            <li><a href="../dashboard/dashboard.html">Dashboard</a></li>
+            <li><a href="../inventory/inventory.html">Inventory</a></li>
+            <li><a href="../procurement/procurement.html">Procurement</a></li>
+            <li><a href="../disposal/disposal.html">Condemnation</a></li>
+            <li><a href="maintenance.html" class="active">Maintenance</a></li>
+            <li><a href="../student/student.html">Student Issues</a></li>
+            <li><a href="../logout/logout.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>Maintenance Table</h1>
+        <div>
+            <button id="sendDisposalRequest" style="display: none;">Send Disposal Request</button>
+            <button id="showAlerts">Show Alerts</button>
+        </div>
+
+        <table id="maintenanceTable">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th>Lab ID</th>
+                    <th>Item Name</th>
+                    <th>Date</th>
+                    <th>Last Maintenance</th>
+                    <th>Maintenance Due</th>
+                    <th>Service Provider</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="maintenanceBody"></tbody>
+        </table>
+
+        <div id="alertsTable" style="display: none;">
+            <h2>Maintenance Alerts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lab ID</th>
+                        <th>Item Name</th>
+                        <th>Date</th>
+                        <th>Last Maintenance</th>
+                        <th>Maintenance Due</th>
+                        <th>Service Provider</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="alertsBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h2>Edit Maintenance Info</h2>
+            <form id="editForm">
+                <label>Serial Number: <input type="text" id="editSrNo" readonly></label>
+                <label>Item Name: <input type="text" id="editItemId" readonly></label>
+                <label>Last Maintenance: <input type="date" id="editLastMaintenance"></label>
+                <label>Maintenance Due: <input type="date" id="editMaintenanceDue" readonly></label>
+                <label>Service Provider: <input type="text" id="editServiceProvider"></label>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="disposalReasonModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDisposalModal()">×</span>
+            <h3>Enter Reason for Disposal</h3>
+            <textarea id="disposalReason" rows="4" cols="50" placeholder="Enter reason for disposal"></textarea>
+            <br>
+            <button id="submitDisposalReason">Submit</button>
+        </div>
+    </div>
+
+    <script src="maintenance.js"></script>
+</body>
+</html>
+
+
