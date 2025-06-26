@@ -1,0 +1,592 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condemnation Form - Annexure V</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1090px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            min-width: 25px;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            min-width: 140px;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3),
+        th:nth-child(4),
+        td:nth-child(4),
+        th:nth-child(5),
+        td:nth-child(5),
+        th:nth-child(6),
+        td:nth-child(6),
+        th:nth-child(7),
+        td:nth-child(7) {
+            min-width: 75px;
+        }
+
+        th:nth-child(8),
+        td:nth-child(8),
+        th:nth-child(9),
+        td:nth-child(9),
+        th:nth-child(10),
+        td:nth-child(10),
+        th:nth-child(11),
+        td:nth-child(11),
+        th:nth-child(12),
+        td:nth-child(12) {
+            min-width: 110px;
+        }
+
+        th {
+            background-color: #fff;
+            font-weight: bold;
+            color: #333;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            padding: 0;
+            text-align: left;
+            white-space: pre-wrap;
+            resize: none;
+            overflow: hidden;
+            line-height: 1.2;
+            min-height: 20px;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            padding: 0;
+            text-align: left;
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .signature-section div {
+            width: 45%;
+        }
+
+        .signature-line {
+            width: 200px;
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            vertical-align: baseline;
+            position: relative;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        .signature-line input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            padding: 0;
+            position: absolute;
+            top: -15px;
+            left: 0;
+            color: #333;
+            text-align: left;
+        }
+
+        .signature-line input:focus {
+            outline: none;
+            color: #333;
+        }
+
+        .committee-list {
+            margin-left: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .committee-list p {
+            margin: 5px 0;
+        }
+
+        .committee-members-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .committee-members-row p {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .committee-members-row p:last-child {
+            margin-right: 0;
+        }
+
+        .submit-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 1280px) {
+            .table-container {
+                overflow-x: auto;
+            }
+
+            th,
+            td {
+                font-size: 14px;
+                padding: 10px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            th,
+            td {
+                font-size: 12px;
+                padding: 10px 5px;
+            }
+
+            .signature-section {
+                flex-direction: column;
+            }
+
+            .signature-section div {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .committee-members-row {
+                flex-direction: column;
+            }
+
+            .committee-members-row p {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .submit-button {
+                position: static;
+                margin-top: 20px;
+                width: 100%;
+            }
+        }
+
+        input:disabled,
+        textarea:disabled {
+            background-color: #f5f5f5;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Annexure V</h2>
+        <h3>Proforma</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Description of Stores/Items</th>
+                        <th>Quantity/Weight</th>
+                        <th>Book/Original Value</th>
+                        <th>Date of Purchase</th>
+                        <th>Date/Month of item becoming Unserviceable</th>
+                        <th>Period of use</th>
+                        <th>Present condition of service (In service/out of service)</th>
+                        <th>Whether effort have been taken to repair. If so thereof (also specify cost incurring)</th>
+                        <th>Location where the items are stored for condemnation</th>
+                        <th>Reason for Condemnation</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="condemnationTableBody">
+                    <!-- Rows will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="signature-section">
+            <div>
+                <div class="section-title">Prepared by:</div>
+                <p>Name: <span class="signature-line"><input type="text"></span></p>
+                <p>Designation: <span class="signature-line"><input type="text"></span></p>
+            </div>
+            <div>
+                <div class="section-title">Reviewed by:</div>
+                <p>Name: <span class="signature-line"><input type="text"></span></p>
+                <p>Designation: <span class="signature-line"><input type="text"></span></p>
+            </div>
+        </div>
+
+        <div class="section-title">Condemnation Committee Members</div>
+        <div class="committee-list">
+            <div class="committee-members-row">
+                <p>1. Name: Dr. Krupashankara M.S (Chairman)<br>Designation: Principal</p>
+                <p>2. Name: <span class="signature-line"><input type="text"></span> (Member)<br>Designation: <span
+                        class="signature-line"><input type="text"></span></p>
+                <p>3. Name: Shri. Sunil Rauf (Member)<br>Designation: <span class="signature-line"><input
+                            type="text"></span></p>
+            </div>
+            <p>4. Name: <span class="signature-line"><input type="text"></span> (Member)</p>
+            <p>5. Name: <span class="signature-line"><input type="text"></span> (Invited Member)</p>
+        </div>
+
+        <button class="submit-button" id="submitButton">Submit</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            try {
+                // Get selected items and reason from localStorage
+                const selectedItems = JSON.parse(localStorage.getItem('selectedItemsForDisposal') || '[]');
+                const disposalReason = localStorage.getItem('disposalReason') || '';
+                const tbody = document.getElementById('condemnationTableBody');
+                tbody.innerHTML = '';
+
+                console.log('Selected Items from localStorage:', JSON.stringify(selectedItems, null, 2));
+                console.log('Disposal Reason:', disposalReason);
+
+                // Fetch additional item data from the database
+                let itemData = selectedItems;
+                if (selectedItems.length > 0) {
+                    try {
+                        console.log('Fetching data from fetch_condemnation_data.php with:', JSON.stringify(selectedItems, null, 2));
+                        const response = await fetch('fetch_condemnation_data.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(selectedItems)
+                        });
+                        const data = await response.json();
+                        console.log('Fetched Item Data:', JSON.stringify(data, null, 2));
+
+                        if (data.error) {
+                            console.error('Fetch error:', data.error);
+                            alert('Failed to fetch item data: ' + data.error);
+                        } else if (Array.isArray(data) && data.length > 0) {
+                            itemData = data;
+                        } else {
+                            console.warn('No data returned from fetch, using localStorage data');
+                        }
+                    } catch (fetchError) {
+                        console.error('Fetch failed:', fetchError);
+                        alert('Error connecting to server. Using cached data.');
+                    }
+                } else {
+                    console.log('No selected items in localStorage');
+                }
+
+                console.log('Final itemData:', JSON.stringify(itemData, null, 2));
+
+                // Function to calculate period of use
+                function calculatePeriodOfUse(purchaseDate) {
+                    if (!purchaseDate) return '';
+                    const purchase = new Date(purchaseDate);
+                    const today = new Date();
+                    const years = today.getFullYear() - purchase.getFullYear();
+                    const months = today.getMonth() - purchase.getMonth();
+                    return `${years} years, ${months} months`;
+                }
+
+                // Function to format date as YYYY-MM-DD
+                function formatDate(date) {
+                    if (!date) return '';
+                    const d = new Date(date);
+                    if (isNaN(d.getTime())) return '';
+                    return d.toISOString().split('T')[0];
+                }
+
+                // Validate date format (YYYY-MM-DD)
+                function isValidDate(dateStr) {
+                    return dateStr && /^\d{4}-\d{2}-\d{2}$/.test(dateStr) && !isNaN(new Date(dateStr).getTime());
+                }
+
+                // Populate selected items
+                if (itemData.length > 0) {
+                    itemData.forEach((item, index) => {
+                        console.log(`Populating item ${index + 1}:`, JSON.stringify(item, null, 2));
+                        const row = document.createElement('tr');
+                        const todayDate = formatDate(new Date()); // Pre-fill with today's date
+                        const purchaseDate = formatDate(item.date || item.purchase_date);
+                        // Use item.condemnation_date if valid, else default to today
+                        let condemnationDate = item.condemnation_date && isValidDate(item.condemnation_date)
+                            ? item.condemnation_date
+                            : todayDate;
+                        console.log(`Item ${index + 1} - Raw condemnation_date:`, item.condemnation_date);
+                        console.log(`Item ${index + 1} - Setting Condemnation Date to:`, condemnationDate);
+                        row.innerHTML = `
+                    <td><textarea disabled>${index + 1}</textarea></td>
+                    <td><textarea disabled>${item.name_of_the_item || '-'}</textarea></td>
+                    <td><textarea>1</textarea></td>
+                    <td><textarea>${item.price || ''}</textarea></td>
+                    <td><input type="date" value="${purchaseDate}" disabled></td>
+                    <td><input type="date" value="${condemnationDate}" required></td>
+                    <td><textarea disabled>${calculatePeriodOfUse(purchaseDate)}</textarea></td>
+                    <td><textarea disabled>Out of service</textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea>${disposalReason || ''}</textarea></td>
+                    <td><textarea></textarea></td>
+                `;
+                        tbody.appendChild(row);
+                    });
+
+                    // Add empty rows to make up to 4 if single item selected
+                    const emptyRowsToAdd = itemData.length === 1 ? 3 : Math.max(0, 4 - itemData.length);
+                    console.log('Adding empty rows:', emptyRowsToAdd);
+                    for (let i = 0; i < emptyRowsToAdd; i++) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><input type="date"></td>
+                    <td><input type="date"></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                `;
+                        tbody.appendChild(row);
+                    }
+                } else {
+                    console.log('No items to display, showing empty message');
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td colspan="12" style="text-align: center;">No items selected for condemnation</td>
+            `;
+                    tbody.appendChild(row);
+                }
+
+                // Auto-resize textareas
+                document.querySelectorAll('textarea').forEach(textarea => {
+                    textarea.addEventListener('input', function () {
+                        this.style.height = 'auto';
+                        this.style.height = `${this.scrollHeight}px`;
+                    });
+                    textarea.dispatchEvent(new Event('input'));
+                });
+
+                // Real-time date validation
+                document.querySelectorAll('input[type="date"]').forEach(input => {
+                    input.addEventListener('change', function () {
+                        console.log(`Date input changed: ${input.value}`);
+                        if (input.value && !isValidDate(input.value)) {
+                            console.error(`Invalid date input: ${input.value}. Resetting to today.`);
+                            alert(`Invalid date: ${input.value}. Please use YYYY-MM-DD format (e.g., 2025-06-23).`);
+                            input.value = formatDate(new Date());
+                        }
+                    });
+                });
+
+                // Submit button handler
+                document.getElementById('submitButton').addEventListener('click', function () {
+                    console.log('Submit button clicked');
+                    const rows = document.querySelectorAll('#condemnationTableBody tr');
+                    const formData = [];
+                    let isValid = true;
+
+                    rows.forEach((row, index) => {
+                        if (!isValid) return;
+                        const cells = row.querySelectorAll('textarea, input');
+                        if (cells[0].value.trim()) { // Only process rows with a serial number
+                            const condemnationDate = cells[5].value;
+                            console.log(`Row ${index + 1} - Condemnation Date:`, condemnationDate);
+                            console.log(`Row ${index + 1} - All cell values:`, Array.from(cells).map(c => c.value));
+                            if (!condemnationDate) {
+                                alert(`Please enter a valid date for "Condemnation Date" in row ${index + 1}`);
+                                isValid = false;
+                                return;
+                            }
+                            if (!isValidDate(condemnationDate)) {
+                                alert(`Invalid date for "Condemnation Date" in row ${index + 1}: ${condemnationDate}. Please use YYYY-MM-DD.`);
+                                isValid = false;
+                                return;
+                            }
+                            const rowIndex = parseInt(cells[0].value) - 1;
+                            const rowData = {
+                                sr_no: itemData[rowIndex]?.sr_no || selectedItems[rowIndex]?.sr_no || cells[0].value,
+                                name_of_the_item: cells[1].value,
+                                quantity: cells[2].value,
+                                price: cells[3].value,
+                                purchase_date: cells[4].value,
+                                condemnation_date: condemnationDate,
+                                period_of_use: cells[6].value,
+                                condition: cells[7].value,
+                                effort_for_repair_and_cost: cells[8].value,
+                                location_of_items: cells[9].value,
+                                reason_for_condemnation: cells[10].value,
+                                remarks: cells[11].value
+                            };
+                            console.log(`Row ${index + 1} - Form Data:`, JSON.stringify(rowData, null, 2));
+                            formData.push(rowData);
+                        }
+                    });
+
+                    if (!isValid) {
+                        console.log('Submission halted due to invalid data');
+                        return;
+                    }
+
+                    if (formData.length === 0) {
+                        alert('No valid items to submit.');
+                        console.log('No valid form data to submit');
+                        return;
+                    }
+
+                    console.log('Final form data to submit:', JSON.stringify(formData, null, 2));
+
+                    // Send data to PHP script
+                    fetch('submit_condemnation.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ items: formData, lab_id: itemData[0]?.lab_id || selectedItems[0]?.lab_id || '' })
+                    })
+                        .then(response => {
+                            console.log('Fetch response status:', response.status);
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Fetch data:', JSON.stringify(data, null, 2));
+                            if (data.status === 'success') {
+                                alert('Condemnation form submitted successfully!');
+                                localStorage.removeItem('selectedItemsForDisposal');
+                                localStorage.removeItem('disposalReason');
+                                window.location.href = 'maintenance.html';
+                            } else {
+                                throw new Error(data.message || 'Submission failed');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error submitting condemnation form:', error);
+                            alert('Error submitting form: ' + error.message);
+                        });
+                });
+
+            } catch (error) {
+                console.error('Error loading condemnation form:', error);
+                const tbody = document.getElementById('condemnationTableBody');
+                tbody.innerHTML = `<tr><td colspan="12" style="text-align: center;">Error loading form data: ${error.message}</td></tr>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
+
