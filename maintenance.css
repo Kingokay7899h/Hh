@@ -1,0 +1,296 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.sidebar ul li.active a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.main-content {
+  margin-left: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: calc(100% - 200px);
+}
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.alert-btn,
+.disposal-btn {
+  background-color: crimson;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.disposal-btn {
+  background-color: #ff8c00;
+  /* Orange to distinguish from alerts */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  font-size: 1em;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table th:first-child,
+table td:first-child {
+  width: 50px;
+  /* Fixed width for checkbox column */
+  text-align: center;
+}
+
+table th {
+  background-color: #f4f4f4;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.alert-btn:hover,
+.disposal-btn:hover {
+  opacity: 0.9;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: auto;
+  font-size: 1em;
+}
+
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+.modal-content input:disabled {
+  background-color: #f4f4f4;
+  cursor: not-allowed;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* disposal.css (append to existing styles) */
+#disposalReasonModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#disposalReasonModal .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  margin: auto;
+}
+
+#disposalReasonModal textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+#disposalReasonModal button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+#disposalReasonModal button:hover {
+  background-color: #0056b3;
+}
+
+#condemnationTable input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+}
+
+#condemnationTable input[readonly] {
+  background-color: #f4f4f4;
+  cursor: not-allowed;
+}
+
+/* Add this CSS to your existing maintenance.css file */
+
+/* Disposal Reason Popup Styles */
+#disposalReasonPopup.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#disposalReasonPopup .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#disposalReasonPopup .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#disposalReasonPopup .close:hover {
+    color: black;
+}
+
+#disposalReasonPopup h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+#disposalReasonPopup label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+#disposalReasonPopup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#disposalReasonPopup button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+#disposalReasonPopup button:hover {
+    background-color: #45a049;
+}
+
+#disposalReasonPopup button[type="button"] {
+    background-color: #f44336;
+}
+
+#disposalReasonPopup button[type="button"]:hover {
+    background-color: #da190b;
+}
+
+
+
